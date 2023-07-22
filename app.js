@@ -23,7 +23,7 @@ const app = express();
 app.set('view engine', 'pug');
  app.set('views',path.join(__dirname,'views'));
 
-//1) Global Middlewares
+
 
 app.use(express.static(`${__dirname}/public`));   //it defines that all the static assets will be automatically served from a folder called public
 
