@@ -51,6 +51,52 @@ const showAlert = (type,msg) =>{
     window.setTimeout(hideAlert,5000)
 }
 
+
+//1) Signup Function----------------------------------------------------------------
+const signup =async(email,name,password) => {
+    try{ 
+            const res = await axios({
+                //body
+                method:'POST',
+                url:'/api/v1/users/signup',
+                data:{
+                    email,
+                    name,
+                    password
+                    }
+            });
+        
+            if(res.data.status === 'success')
+            {
+                showAlert('success','Account created successfully');
+                window.setTimeout(()=>{
+                    location.assign('/'); 
+                },1500);
+            }
+    }catch(err){
+         console.log(err)
+        showAlert('error','Incorrect email or password! Please try again!');
+        };
+}
+
+//2)Getting values(DOM) and calling signup function
+if(document.querySelector('.form-signup')){
+    document.querySelector('.form-signup').addEventListener('submit',async(e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const name = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+        //const passwordConfirm = document.getElementById('passwordConfirm').value;
+        await signup(email,name,password);
+ });
+}
+
+
+
+
+
+
+
 //------------------------------------------Logout
 
 //1)Logout function
