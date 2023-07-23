@@ -152,18 +152,18 @@ body {
   line-height: 1;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  /* background-image: -webkit-gradient(
+  background-image: -webkit-gradient(
     linear,
     left top,
     right bottom,
     from(rgba(125, 213, 111, 0.85)),
     to(rgba(40, 180, 135, 0.85))
-  ); */
-  /* background-image: linear-gradient(
+  );
+  background-image: linear-gradient(
     to bottom right,
     rgba(125, 213, 111, 0.85),
     rgba(40, 180, 135, 0.85)
-  ); */
+  );
 }
 
 .heading-primary {

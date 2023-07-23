@@ -87,6 +87,7 @@ if(document.querySelector('.form-signup')){
         const name = document.getElementById('name').value;
         const password = document.getElementById('password').value;
         //const passwordConfirm = document.getElementById('passwordConfirm').value;
+        document.querySelector(".btn-signup").textContent = "Creating account...";
         await signup(email,name,password);
  });
 }
