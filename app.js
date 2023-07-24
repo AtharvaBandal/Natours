@@ -7,6 +7,8 @@ const mongoSanitize= require('express-mongo-sanitize');  //npm i express-mongo-s
 const xss  = require('xss-clean'); //npm i xss-clean 
 const hpp = require('hpp'); //npm i hpp
 const cookieParser = require('cookie-parser'); //npm i cookie-parser
+const compression = require('compression');
+const cors = require('cors'); 
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -15,7 +17,8 @@ const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes')
 const AppError = require('./utils/appError');
 const  globalErrorHandler = require('./controllers/errorController');
-const compression = require('compression');
+
+const bookingController = require('./controllers/bookingController');
  
  
 const app = express(); 
@@ -23,7 +26,8 @@ const app = express();
 app.set('view engine', 'pug');
  app.set('views',path.join(__dirname,'views'));
 
-
+//Implement Cors
+app.use(cors())
 
 app.use(express.static(`${__dirname}/public`));   //it defines that all the static assets will be automatically served from a folder called public
 
@@ -42,7 +46,7 @@ const limiter = rateLimit({
 });
    app.use('/api',limiter);
 
-
+app.post('/webhooks-checkout',express.raw({type:'application/json'}),bookingController.webhookCheckout );
 
 
 app.use(express.json({limit: '10kb' }));                      //makes req.body accessible for api requests(body parser)

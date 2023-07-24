@@ -75,7 +75,7 @@ const signup =async(email,name,password) => {
             }
     }catch(err){
          console.log(err)
-        showAlert('error','Incorrect email or password! Please try again!');
+        showAlert('error','something wrong try again!');
         };
 }
 
